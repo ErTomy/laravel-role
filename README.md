@@ -27,12 +27,6 @@ Con esto el paquete ya está instalado, ahora lo que debemos es hacer referencia
 Ertomy\Roles\RolesPackageServiceProvider::class, 
 ```
 
-También debemos incluir el middleware en el fichero `app\Http\Kernel.php` dentro del array **middlewareAliases**:
-
-```php
-'role' => \Ertomy\Roles\Middleware\RoleMiddleware::class, 
-```
-
 Y finalmente en el modelo **User** añadir el trait para que cargue la relación de la tabla user con role y poder usar el método hasRole() dentro del user:
 
 ```php
@@ -90,7 +84,7 @@ A partir de aquí ya podríamos usar el middleware para las rutas (se le puede p
 ```php
 Route::get('/admin', function () {
     dd('es administrador');
-})->middleware('rol:Admin');
+})->middleware('role:Admin');
 ```
 
 También tendríamos una directiva de blade para poder controlar lo que mostramos a cada perfil de usuario (se le puede pasar como parámetro un literal con el nombre del rol o un listado de roles separados por coma):

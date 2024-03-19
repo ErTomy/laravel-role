@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class RoleMiddleware
 {
-    public function handle($request, Closure $next, $role)
+    public function handle($request, Closure $next, ...$roles)
     {
         // Verificar si el usuario tiene el rol requerido
-        if (Auth::check() && auth()->user()->hasRole($role)) {
+        if (Auth::check() && auth()->user()->hasRole($roles)) {
             return $next($request);
         }
 
